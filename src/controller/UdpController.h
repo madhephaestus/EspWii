@@ -11,6 +11,7 @@
 #include <device/UDPSimplePacketComs.hpp>
 #include <client/IPacketResponseEvent.h>
 #include <client/AbstractPacketType.h>
+
 class UdpController: public AbstractController, public IPacketResponseEvent {
 	UDPSimplePacketComs* myconnection;
 	AbstractPacketType * readController;

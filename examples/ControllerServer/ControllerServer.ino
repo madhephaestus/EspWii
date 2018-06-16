@@ -4,6 +4,9 @@
 #include <EspWii.h>
 #include <ESP32Servo.h>
 #include <Wire.h>
+#include <Esp32SimplePacketComs.h>
+#include <PacketEvent.h>
+
 #define CONTROLLER_ID 2
 #define TEAMNUMBER    22
 String * controllerName = new String("GameController_"+String(TEAMNUMBER));
@@ -12,7 +15,8 @@ Accessory  classic;
 long timeSincePrint=0;
 void setup() {
 	launchControllerServer();
-	addServer(new WiiClassicServerEvent(&classic,CONTROLLER_ID));
+	PacketEventAbstract *ptr =new WiiClassicServerEvent(&classic,CONTROLLER_ID);
+	addServer(ptr);
 	setNameUdpDevice(controllerName);
 
 }

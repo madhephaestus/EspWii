@@ -1,4 +1,6 @@
 
+#if !defined(ESPWIIH)
+#define ESPWIIH
 #include <stdint.h>
 #include <stdio.h>
 #include <vector>
@@ -10,7 +12,8 @@
 //#include <server/WiiChuckServer.h>
 #include <controller/UdpController.h>
 #include "controller/AbstractController.h"
-
+#include <Esp32SimplePacketComs.h>
+#include <PacketEvent.h>
 //#include <controller/ControlFactory.h>
 void launchControllerServer() ;
 
@@ -21,3 +24,4 @@ void loopServer();
 void loopReciver();
 
 AbstractController * getController(int id);
+#endif
