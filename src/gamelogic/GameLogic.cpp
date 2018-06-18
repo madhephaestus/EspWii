@@ -32,29 +32,29 @@ void GameLogic::run(void) {
 				robot->robotShutdown();
 				teleopOnlyMode=false;
 			}
-		}
-		if (controller->getData()[11] > 128) {
+		}else
+		if (controller->getData()[6] > 128) {
 			if (state != Autonomous) {
-				Serial.println("Y pressed, direct to start Autonomous");
+				Serial.println("Right pressed, direct to start Autonomous");
 				state = startAuto;
 				robot->robotStartup();
 				robot->robotShutdown();
 				teleopOnlyMode=false;
 
 			}
-		}
-		if (controller->getData()[10] > 128 ) {
+		}else
+		if (controller->getData()[6] < 127 ) {
 			if (state != Teleop) {
-				Serial.println("Direct to run Teleop");
+				Serial.println("Left Direct to run Teleop");
 				state = startTeleop;
 				robot->robotStartup();
 				robot->robotShutdown();
 				teleopOnlyMode=true;
 			}
-		}
-		if (controller->getData()[12] > 128 ) {
+		}else
+		if (controller->getData()[7] > 128 ) {
 			if (state != Teleop) {
-				Serial.println("Start timed  Teleop");
+				Serial.println("Up Start timed  Teleop");
 				state = startTeleop;
 				robot->robotStartup();
 				robot->robotShutdown();
@@ -63,7 +63,17 @@ void GameLogic::run(void) {
 			}
 		}
 	}
+	/*
+	if(controller!=NULL){
+		Serial.print("\r\nValues = ");
+		for(int i=0;i<WII_VALUES_ARRAY_SIZE;i++){
+			Serial.print(String(controller->getData()[i])+" , ");
 
+		}
+		Serial.print("\r\n");
+
+	}
+	 */
 	switch (state) {
 	case powerup:
 		digitalWrite(robot->getDebugLEDPin(), 1);

@@ -6,11 +6,14 @@
  */
 
 #include "WiiClassicServer.h"
+#include <Arduino.h>
+#include <Accessory.h>
 
 void WiiClassicServerEvent::event(float * buffer) {
 	//Serial.print("\r\nClassic read");
 	//classic->readData();
 	//classic->printInputs();
+
 	if(getControllerStatusStartup()){
 		setControllerStatusStartup(true);
 		analogReadResolution(8);
@@ -24,7 +27,7 @@ void WiiClassicServerEvent::event(float * buffer) {
 		getControllerStatus()[i]=charBuff[i];
 	}
 	charBuff[0]=controllerIndex;
-	uint8_t * values= classic->values;
+	uint8_t * values= classic->getValues();
 	for(int i=0;i<WII_VALUES_ARRAY_SIZE;i++){
 		charBuff[1+i]=values[i];
 	}

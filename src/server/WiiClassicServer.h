@@ -21,6 +21,7 @@ class WiiClassicServerEvent: public PacketEventAbstract {
 private:
 	uint8_t controllerIndex;
 	void start(){
+
 		classic->begin();
 	}
 public:

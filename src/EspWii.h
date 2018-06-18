@@ -15,12 +15,8 @@
 #include "controller/AbstractController.h"
 #include <PacketEvent.h>
 //#include <controller/ControlFactory.h>
-void launchControllerServer() ;
 
-void addServer(PacketEventAbstract * eventImplementation );
-void setNameUdpDevice(String *robot );
-void launchControllerReciver(const char * ssid, const char * pwd,String * controllerName);
-void loopServer();
+void launchControllerReciver(String * controllerName);
 void loopReciver();
 
 AbstractController * getController(int id);

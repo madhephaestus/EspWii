@@ -120,7 +120,7 @@ GameLogic logic(new MyRobot(), CONTROLLER_ID);
 
 //The setup function is called once at startup of the sketch
 void setup() {
-	launchControllerReciver(AP_SSID, AP_PW, controllerName);
+	launchControllerReciver( controllerName);
 }
 
 // The loop function is called in an endless loop

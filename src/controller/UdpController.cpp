@@ -28,7 +28,7 @@ int UdpController::getId() {
  * Update the controller
  */
 void UdpController::loop() {
-	myconnection->loop(millis(), 1000);
+	myconnection->loop(millis(), 100);
 
 }
 void UdpController::oneShotMode() {
@@ -52,8 +52,7 @@ uint8_t * UdpController::getStatus() {
 	return readController->getDownstreamBytes();
 }
 void UdpController::onTimeout(int timeBetweenSendAndRecive) {
-	Serial.println(
-			"\n\nController Timed OUT! " + String(timeBetweenSendAndRecive));
+	//Serial.println("\n\nController Timed OUT! " + String(timeBetweenSendAndRecive));
 	isTimedOutValue=true;
 
 }
