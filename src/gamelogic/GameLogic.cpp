@@ -31,6 +31,7 @@ void GameLogic::run(void) {
 				robot->robotStartup();
 				robot->robotShutdown();
 				teleopOnlyMode=false;
+				foreverAuto=false;
 			}
 		}else
 		if (controller->getData()[6] > 128) {
@@ -39,8 +40,8 @@ void GameLogic::run(void) {
 				state = startAuto;
 				robot->robotStartup();
 				robot->robotShutdown();
+				foreverAuto=true;
 				teleopOnlyMode=false;
-
 			}
 		}else
 		if (controller->getData()[6] < 127 ) {
@@ -50,6 +51,7 @@ void GameLogic::run(void) {
 				robot->robotStartup();
 				robot->robotShutdown();
 				teleopOnlyMode=true;
+				foreverAuto=false;
 			}
 		}else
 		if (controller->getData()[7] > 128 ) {
@@ -59,7 +61,7 @@ void GameLogic::run(void) {
 				robot->robotStartup();
 				robot->robotShutdown();
 				teleopOnlyMode=false;
-
+				foreverAuto=false;
 			}
 		}
 	}
@@ -103,6 +105,8 @@ void GameLogic::run(void) {
 		break;
 	case Autonomous:
 		timeDiff = millis() - autoStartTime;
+		if(foreverAuto)
+			timeDiff=0;
 		if (timeDiff > autoTime) {
 			state = waitForTeleop;
 			robot->robotShutdown();

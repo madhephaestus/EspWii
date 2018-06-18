@@ -30,6 +30,7 @@ public:
 	void printState();
 	AbstractController * controller;
 	bool teleopOnlyMode = false;
+	bool foreverAuto = false;
 private:
 	bool start();
 	void startup();
