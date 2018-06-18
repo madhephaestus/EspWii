@@ -23,19 +23,20 @@ void setup() {
 
 void loop() {
 	loopServer();
-	if(millis()-timeSincePrint>20){
+	if(millis()-timeSincePrint>50){
 		timeSincePrint=millis();
 		classic.readData();
-		/*
-		classic.printInputs();
-		Serial.println("\n\n");
+		//classic.printInputs();
+
+		//classic.printInputs();
+		//Serial.print("\r\nValues=");
 		for(int i=0;i<60;i++){
-			//Serial.println("Val "+String(i)+" = "+String( getControllerStatus()[i]));
+			//Serial.print(" , "+String( getControllerStatus()[i]));
 		}
 		for(int i=0;i<WII_VALUES_ARRAY_SIZE;i++){
-			Serial.println("Controller Val "+String(i)+" = "+String( (uint8_t)classic.values[i]));
+			//Serial.print(" , "+String( (uint8_t)classic.values[i]));
 		}
-		*/
+
 	}
 
 }
