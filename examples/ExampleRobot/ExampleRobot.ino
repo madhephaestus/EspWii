@@ -42,6 +42,7 @@ public:
 	 * @param status an array of bytes that the user can write to to be displayed on the base station
 	 */
 	void autonomous(long time, uint8_t * status) {
+		Serial.println("autonomous : "+String(time));
 		//
 		for (int i = 0; i < CONTROLLER_BUFFER_SIZE; i++) {
 			status[i] = 42;// random data placed in buffer to be printed by base station
@@ -73,6 +74,7 @@ public:
 	 *
 	 */
 	void teleop(long time, uint8_t * status, uint8_t * data) {
+		Serial.println("teleop : "+String(time));
 		// map from controller values to servo values
 		int servoValue1 = map(data[1], 0, 255, 0, 180);
 		int servoValue2 = map(data[0], 0, 255, 180, 0);
