@@ -5,9 +5,6 @@
 #include <ESP32Servo.h>
 #include <gamelogic/GameLogic.h>
 #include <math.h>
-// Team specific data
-#define AP_SSID  "RBE_Team_1"       //can set ap hostname here
-#define AP_PW	 "thisissecret"       //can set ap hostname here
 #define CONTROLLER_ID 2 // use remote controller from WiFi
 //#define CONTROLLER_ID 0 // use local Wii controller
 
@@ -72,7 +69,7 @@ GameLogic logic(new MyRobot(), CONTROLLER_ID);
 
 //The setup function is called once at startup of the sketch
 void setup() {
-	launchControllerReciver(AP_SSID, AP_PW);
+	launchControllerReciver(new String("RBE1001Team22"));
 }
 
 // The loop function is called in an endless loop

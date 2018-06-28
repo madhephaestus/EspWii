@@ -1,10 +1,10 @@
 #include <SimplePacketComs.h>
 #include <WiiChuck.h>
 #include <WiFi.h>
+#include <Esp32SimplePacketComs.h>
 #include <EspWii.h>
 #include <ESP32Servo.h>
 #include <Wire.h>
-#include <Esp32SimplePacketComs.h>
 #include <PacketEvent.h>
 
 #define CONTROLLER_ID 2
@@ -15,6 +15,7 @@ Accessory  classic;
 long timeSincePrint=0;
 void setup() {
 	launchControllerServer();
+	//classic.enableEncryption(true);
 	PacketEventAbstract *ptr =new WiiClassicServerEvent(&classic,CONTROLLER_ID);
 	addServer(ptr);
 	setNameUdpDevice(controllerName);
@@ -29,12 +30,12 @@ void loop() {
 		//classic.printInputs();
 
 		//classic.printInputs();
-		//Serial.print("\r\nValues=");
+		Serial.print("\r\nValues=");
 		for(int i=0;i<60;i++){
 			//Serial.print(" , "+String( getControllerStatus()[i]));
 		}
 		for(int i=0;i<WII_VALUES_ARRAY_SIZE;i++){
-			//Serial.print(" , "+String( (uint8_t)classic.values[i]));
+			Serial.print(" , "+String( (uint8_t)classic.values[i]));
 		}
 
 	}
