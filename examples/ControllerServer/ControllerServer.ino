@@ -9,14 +9,15 @@
 
 #define CONTROLLER_ID 2
 #define TEAMNUMBER    22
-String * controllerName = new String("GameController_"+String(TEAMNUMBER));
+String * controllerName = new String("GameController_" + String(TEAMNUMBER));
 
-Accessory  classic;
-long timeSincePrint=0;
+Accessory classic;
+long timeSincePrint = 0;
 void setup() {
 	launchControllerServer();
 	//classic.enableEncryption(true);
-	PacketEventAbstract *ptr =new WiiClassicServerEvent(&classic,CONTROLLER_ID);
+	PacketEventAbstract *ptr = new WiiClassicServerEvent(&classic,
+			CONTROLLER_ID);
 	addServer(ptr);
 	setNameUdpDevice(controllerName);
 
@@ -24,20 +25,31 @@ void setup() {
 
 void loop() {
 	loopServer();
-	if(millis()-timeSincePrint>50){
-		timeSincePrint=millis();
+	if (millis() - timeSincePrint > 20) {
+		timeSincePrint = millis();
 		classic.readData();
+
 		//classic.printInputs();
 
 		//classic.printInputs();
-		Serial.print("\r\nValues=");
-		for(int i=0;i<60;i++){
-			//Serial.print(" , "+String( getControllerStatus()[i]));
+		//Serial.print("\r\n took = "+String(millis()-timeSincePrint)+" Values= ");
+		bool print = false;
+		for (int i = 0; i < WII_VALUES_ARRAY_SIZE; i++) {
+			if (((uint8_t) classic.values[i]) > 128
+					|| ((((uint8_t) classic.values[i]) < 128)
+							&& ((uint8_t) classic.values[i]) > 0)) {
+				print=true;
+			}
 		}
-		for(int i=0;i<WII_VALUES_ARRAY_SIZE;i++){
-			Serial.print(" , "+String( (uint8_t)classic.values[i]));
+		if (print) {
+			Serial.print("\r\n Values= ");
+			for (int i = 0; i < 60; i++) {
+				//Serial.print(" , "+String( getControllerStatus()[i]));
+			}
+			for (int i = 0; i < WII_VALUES_ARRAY_SIZE; i++) {
+				Serial.print(" , " + String((uint8_t) classic.values[i]));
+			}
 		}
-
 	}
 
 }
