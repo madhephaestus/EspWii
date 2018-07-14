@@ -20,7 +20,7 @@ If the name requests ends with a \* charrecter then it wil be treated as a wildc
 ## Game Controller
 ### State exchange
 
-| |ID | byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |
+| |ID | byte 0 |byte 1 |byte 2 |byte 3 |byte 4 |byte 5 |byte 6 |byte 7 |byte 8 |byte 9 |byte 10 |byte 11 |byte 12 |byte 13 |byte 14 |byte 15 |byte 16 |byte 17 |byte 18 |byte 19 |
 |--- |--- | --- |--- | --- |--- | --- | --- | --- |--- | --- |--- | --- | --- | --- |--- | --- |--- | --- | --- |--- |--- |
 | downstream Bytes |4 | 1 | 1 | 1 | 1 | 1 | 1 |1 | 1 | 1 | 1 | 1 | 1 |1 | 1 | 1 | 1 | 1 | 1 |1|1|
 | Contents downstream |1970 | Controller ID| JoyXLeft | JoyYLeft | JoyXRight | JoyYRight | TriggerLeft | TriggerRight |PadRight/PadLeft| PadDown/PadUp |--- |--- |ButtonX|ButtonY|ButtonA|ButtonB|ButtonMinus/getButtonPlus|ButtonHome|---|ButtonZLeft|ButtonZRight|
