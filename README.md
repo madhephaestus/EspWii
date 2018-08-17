@@ -1,6 +1,8 @@
 # EspWii
 A framework for controlling one ESP from another using various Wii accessories. 
 
+This library is for hosting an i2c Wii accessory device, supported by WiiChuck, as a UDP server. There is also a client in the library for connecting to that server. It lets you plug any Wii accessoryinto one ESP32, then use that accessory on a different ESP32 over the infrastructure WIFI. The balance board is a Bluetooth device and not supported by WiiChuck.
+
 # Known Commands
 
 ## All UDP devices
