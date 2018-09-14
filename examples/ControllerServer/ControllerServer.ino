@@ -47,7 +47,7 @@ void loop() {
 				//Serial.print(" , "+String( getControllerStatus()[i]));
 			}
 			for (int i = 0; i < WII_VALUES_ARRAY_SIZE; i++) {
-				Serial.print(" , " + String((uint8_t) classic.values[i]));
+				Serial.print("\n\tIndex "+String(i)+" = " + String((uint8_t) classic.values[i]));
 				valuesLastSent[i]= classic.values[i];
 			}
 		}
