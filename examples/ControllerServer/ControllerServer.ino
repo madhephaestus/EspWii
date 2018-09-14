@@ -13,9 +13,11 @@ String * controllerName = new String("GameController_" + String(TEAMNUMBER));
 
 Accessory classic;
 long timeSincePrint = 0;
+uint8_t valuesLastSent[WII_VALUES_ARRAY_SIZE];
 void setup() {
 	launchControllerServer();
 	//classic.enableEncryption(true);
+
 	PacketEventAbstract *ptr = new WiiClassicServerEvent(&classic,
 			CONTROLLER_ID);
 	addServer(ptr);
@@ -35,9 +37,7 @@ void loop() {
 		//Serial.print("\r\n took = "+String(millis()-timeSincePrint)+" Values= ");
 		bool print = false;
 		for (int i = 0; i < WII_VALUES_ARRAY_SIZE; i++) {
-			if (((uint8_t) classic.values[i]) > 128
-					|| ((((uint8_t) classic.values[i]) < 128)
-							&& ((uint8_t) classic.values[i]) > 0)) {
+			if (valuesLastSent[i]!= classic.values[i]) {
 				print=true;
 			}
 		}
@@ -48,6 +48,7 @@ void loop() {
 			}
 			for (int i = 0; i < WII_VALUES_ARRAY_SIZE; i++) {
 				Serial.print(" , " + String((uint8_t) classic.values[i]));
+				valuesLastSent[i]= classic.values[i];
 			}
 		}
 	}
