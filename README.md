@@ -1,6 +1,18 @@
 # EspWii
 A framework for controlling one ESP from another using various Wii accessories. 
 
+This library is for hosting an i2c Wii accessory device, supported by  [WiiChuck](https://github.com/madhephaestus/WiiChuck), as a UDP server. There is also a client in the library for connecting to that server. It lets you plug any Wii accessoryinto one ESP32, then use that accessory on a different ESP32 over the infrastructure WIFI. The balance board is a Bluetooth device and not supported by WiiChuck.
+
+# Depenencies
+In the Arduino Library Manager, search for and install:
+
+```
+WiiChuck
+Esp32SimplePacketComs
+SimplePacketComs
+ESP32Servo
+```
+
 # Known Commands
 
 ## All UDP devices
@@ -20,7 +32,7 @@ If the name requests ends with a \* charrecter then it wil be treated as a wildc
 ## Game Controller
 ### State exchange
 
-| |ID | byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |byte |
+| |ID | byte 0 |byte 1 |byte 2 |byte 3 |byte 4 |byte 5 |byte 6 |byte 7 |byte 8 |byte 9 |byte 10 |byte 11 |byte 12 |byte 13 |byte 14 |byte 15 |byte 16 |byte 17 |byte 18 |byte 19 |
 |--- |--- | --- |--- | --- |--- | --- | --- | --- |--- | --- |--- | --- | --- | --- |--- | --- |--- | --- | --- |--- |--- |
 | downstream Bytes |4 | 1 | 1 | 1 | 1 | 1 | 1 |1 | 1 | 1 | 1 | 1 | 1 |1 | 1 | 1 | 1 | 1 | 1 |1|1|
 | Contents downstream |1970 | Controller ID| JoyXLeft | JoyYLeft | JoyXRight | JoyYRight | TriggerLeft | TriggerRight |PadRight/PadLeft| PadDown/PadUp |--- |--- |ButtonX|ButtonY|ButtonA|ButtonB|ButtonMinus/getButtonPlus|ButtonHome|---|ButtonZLeft|ButtonZRight|
