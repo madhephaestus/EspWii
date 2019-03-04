@@ -13,9 +13,17 @@ SimplePacketComs
 ESP32Servo
 ```
 
-# Known Commands
+# Theory of opperation
 
-## All UDP devices
+This stack assumes you have 2 ESP32's where one is connected to a Wii accessory and the other is a robot to be controlled. 
+
+For the game controller side, program the ControllerServer example and be sure to change the name of the game controller to something unique for your robot.
+
+On the robot side, set the name to the same name as the one programmed into the game controller. Program the robot side. 
+
+To connect to WiFi use the serial API provided in Esp32SimplePacketComs:
+
+https://github.com/madhephaestus/Esp32SimplePacketComs/blob/master/README.md
 
 ### Get Name 
 | |ID | bytes |
@@ -30,7 +38,6 @@ This checks the device to see if the name of the device matched a given name. If
 If the name requests ends with a \* charrecter then it wil be treated as a wildcard. Matches up to the \* will be returned. Name requests with just \* will always return the name of the device. 
 
 ## Game Controller
-### State exchange
 
 | |ID | byte 0 |byte 1 |byte 2 |byte 3 |byte 4 |byte 5 |byte 6 |byte 7 |byte 8 |byte 9 |byte 10 |byte 11 |byte 12 |byte 13 |byte 14 |byte 15 |byte 16 |byte 17 |byte 18 |byte 19 |
 |--- |--- | --- |--- | --- |--- | --- | --- | --- |--- | --- |--- | --- | --- | --- |--- | --- |--- | --- | --- |--- |--- |
