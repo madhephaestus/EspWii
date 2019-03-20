@@ -6,6 +6,8 @@
 #include <ESP32Servo.h>
 #include <Wire.h>
 #include <PacketEvent.h>
+#include <wifi/WifiManager.h>
+#include <server/NameCheckerServer.h>
 
 #define CONTROLLER_ID 2
 #define TEAMNUMBER    22
@@ -14,19 +16,24 @@ String * controllerName = new String("GameController_" + String(TEAMNUMBER));
 Accessory classic;
 long timeSincePrint = 0;
 uint8_t valuesLastSent[WII_VALUES_ARRAY_SIZE];
+// SImple packet coms implementation useing WiFi
+UDPSimplePacket coms;
+// WIfi stack managment state machine
+WifiManager manager;
 void setup() {
-	launchControllerServer();
-	//classic.enableEncryption(true);
 
 	PacketEventAbstract *ptr = new WiiClassicServerEvent(&classic,
 			CONTROLLER_ID);
-	addServer(ptr);
-	setNameUdpDevice(controllerName);
+	manager.setup();
+	coms.attach(new NameCheckerServer(controllerName)); // @suppress("Method cannot be resolved")
+	coms.attach(ptr);
 
 }
 
 void loop() {
-	loopServer();
+	manager.loop();
+	if (manager.getState() == Connected)
+		coms.server();
 	if (millis() - timeSincePrint > 20) {
 		timeSincePrint = millis();
 		classic.readData();
