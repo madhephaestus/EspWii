@@ -22,24 +22,23 @@ private:
 	uint8_t controllerIndex;
 	void start(){
 
-		classic->begin();
+		c->begin();
 	}
 public:
-	Accessory * classic;
+	Accessory * c;
 	// Packet ID needs to be set
 	WiiClassicServerEvent(Accessory * incomingClassic,uint8_t mycontrollerIndex) :
 			PacketEventAbstract(WII_CLASSIC_SERVER) {
-		classic = incomingClassic;
+		c = incomingClassic;
 		controllerIndex = mycontrollerIndex;
 		start();
 
 	}
 	WiiClassicServerEvent(uint8_t mycontrollerIndex) :
 			PacketEventAbstract(WII_CLASSIC_SERVER) {
-		classic = new Accessory();
+		c = new Accessory();
 		controllerIndex = mycontrollerIndex;
 		start();
-
 	}
 
 	//User function to be called when a packet comes in

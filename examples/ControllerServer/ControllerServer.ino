@@ -11,10 +11,10 @@
 
 #define CONTROLLER_ID 2
 #define TEAMNUMBER    22
-String * controllerName = new String("GameController_" + String(TEAMNUMBER));
+static String * controllerName = new String("GameController_" + String(TEAMNUMBER));
 
-Accessory classic;
-long timeSincePrint = 0;
+static Accessory classic;
+static long timeSincePrint = 0;
 uint8_t valuesLastSent[WII_VALUES_ARRAY_SIZE];
 // SImple packet coms implementation useing WiFi
 static UDPSimplePacket coms;
@@ -32,8 +32,12 @@ void setup() {
 
 void loop() {
 	manager.loop();
-	if (manager.getState() == Connected)
+	if (manager.getState() == Connected){
+
 		coms.server();
+	}else{
+		return;
+	}
 	if (millis() - timeSincePrint > 20) {
 		timeSincePrint = millis();
 		classic.readData();

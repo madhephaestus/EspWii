@@ -27,9 +27,8 @@ void WiiClassicServerEvent::event(float * buffer) {
 		getControllerStatus()[i]=charBuff[i];
 	}
 	charBuff[0]=controllerIndex;
-	uint8_t * values= classic->getValues();
 	for(int i=0;i<WII_VALUES_ARRAY_SIZE;i++){
-		charBuff[1+i]=values[i];
+		charBuff[1+i]=this->c->values[i];
 	}
 	for(int i=0;i<getNumerOfAnalog();i++){
 		charBuff[WII_VALUES_ARRAY_SIZE+1+i]=analogRead(getControllerAnalogPins()[i]);
