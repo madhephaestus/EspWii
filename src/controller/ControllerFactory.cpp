@@ -22,7 +22,7 @@ enum ControllerManager {
 	updateControllers
 };
 static String * controllerNamePointer = NULL;
-UDPSimplePacketComs * coms;
+static UDPSimplePacketComs * coms;
 static Preferences preferences;
 static String wifiSSID, wifiPassword;
 static boolean useClient = true;
@@ -30,12 +30,12 @@ static IPAddress broadcast;
 static ControllerManager state = Boot;
 static long searchStartTime = 0;
 static UdpNameSearch * pinger = NULL;
-std::vector<IPAddress*> * FactoryAvailibleIPs;
-std::vector<UdpController*> controllerList;
+static std::vector<IPAddress*> * FactoryAvailibleIPs;
+static std::vector<UdpController*> controllerList;
 //when wifi connects
-Accessory localController;
-LocalController * local=NULL;
-WifiManager manager;
+static Accessory localController;
+static LocalController * local=NULL;
+static WifiManager manager;
 
 
 /**

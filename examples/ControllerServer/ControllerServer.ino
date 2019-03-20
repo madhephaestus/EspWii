@@ -17,9 +17,9 @@ Accessory classic;
 long timeSincePrint = 0;
 uint8_t valuesLastSent[WII_VALUES_ARRAY_SIZE];
 // SImple packet coms implementation useing WiFi
-UDPSimplePacket coms;
+static UDPSimplePacket coms;
 // WIfi stack managment state machine
-WifiManager manager;
+static WifiManager manager;
 void setup() {
 
 	PacketEventAbstract *ptr = new WiiClassicServerEvent(&classic,
